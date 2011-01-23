@@ -1,0 +1,31 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    >
+
+  <include file="dependencies.zcml"/>
+
+  <utility
+      component=".plaintext.plainTextFactory"
+      provides=".interfaces.ISourceFactory"
+      name="plaintext"
+      />
+  <adapter
+      factory=".plaintext.PlainTextHTMLRenderer"
+      />
+
+  <utility
+      component=".rest.restFactory"
+      provides=".interfaces.ISourceFactory"
+      name="rest"
+      />
+  <adapter
+      factory=".rest.ReSTHTMLRenderer"
+      />
+
+  <utility
+      component=".vocabulary.SourceVocabulary"
+      provides="zope.schema.interfaces.IVocabularyFactory"
+      name="quotationtool.renderer.sourcetypes"
+      />
+
+</configure>
