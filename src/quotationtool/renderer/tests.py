@@ -89,7 +89,7 @@ class SourceTypesTests(PlacelessSetup, unittest.TestCase):
     def test_Vocabulary(self):
         field = zope.schema.Choice(
             title = u"Source Type",
-            vocabulary = 'quotationtool.renderer.sourcetypes',
+            vocabulary = 'quotationtool.renderer.SourceTypes',
             )
         self.assertTrue(field.validate('plaintext') is None)
         self.assertTrue(field.validate('rest') is None)

@@ -25,7 +25,7 @@
   <utility
       component=".vocabulary.SourceVocabulary"
       provides="zope.schema.interfaces.IVocabularyFactory"
-      name="quotationtool.renderer.sourcetypes"
+      name="quotationtool.renderer.SourceTypes"
       />
 
 </configure>
