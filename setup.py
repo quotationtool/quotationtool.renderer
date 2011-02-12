@@ -50,6 +50,7 @@ setup(
         'zope.app.schema',
         'zope.security',
         'zope.i18nmessageid',
+        'zope.app.renderer',
         ],
     extras_require = dict(
         test = [

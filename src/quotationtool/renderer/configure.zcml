@@ -28,4 +28,6 @@
       name="quotationtool.renderer.SourceTypes"
       />
 
+  <include package=".browser"/>
+
 </configure>

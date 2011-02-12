@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    >
+
+  <adapter
+      factory=".plaintext.PlainTextHTMLRenderer"
+      for="..interfaces.IPlainText
+	   zope.publisher.interfaces.browser.IBrowserRequest"
+      provides="..interfaces.IHTMLRenderer"
+      />
+
+  <adapter
+      factory=".rest.RestHTMLRenderer"
+      for="..interfaces.IReST
+	   zope.publisher.interfaces.browser.IBrowserRequest"
+      provides="..interfaces.IHTMLRenderer"
+      />
+
+</configure>
