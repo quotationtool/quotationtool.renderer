@@ -14,6 +14,10 @@ class IReST(ISource):
     """ A ReST source."""
 
 
+class IHTMLSource(ISource):
+    """ An HTML source."""
+
+
 class ISourceFactory(IFactory):
     """ A factory for source objects."""
 

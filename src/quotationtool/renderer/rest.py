@@ -1,7 +1,7 @@
-from zope.interface import implements
+from zope.interface import implements, implementsOnly
 from zope.component import adapts
 from zope.component.factory import Factory
-from cgi import escape
+from zope.app.renderer.rest import ReStructuredTextToHTMLRenderer
 
 import interfaces
 from i18n import _
@@ -18,7 +18,17 @@ restFactory = Factory(
     )
 
 
-# TODO
-from plaintext import PlainTextHTMLRenderer
-class ReSTHTMLRenderer(PlainTextHTMLRenderer):
+class ReSTHTMLRenderer(ReStructuredTextToHTMLRenderer):
     adapts(interfaces.IReST)
+    implementsOnly(interfaces.IHTMLRenderer)
+
+    def __init__(self, context):
+        self.context = context
+
+    def render(self, limit = None):
+        if limit:
+            # TODO: how can we use the length attribute here?
+            if limit < len(self.context):
+                source = self.context[:limit] + u"..."
+                return escape(source).replace('\n', '<br />\n')
+        return super(ReSTHTMLRenderer, self).render()

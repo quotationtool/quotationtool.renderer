@@ -16,4 +16,11 @@
       provides="..interfaces.IHTMLRenderer"
       />
 
+  <adapter
+      factory=".html.HTMLSourceHTMLRenderer"
+      for="..interfaces.IHTMLSource
+	   zope.publisher.interfaces.browser.IBrowserRequest"
+      provides="..interfaces.IHTMLRenderer"
+      />
+
 </configure>

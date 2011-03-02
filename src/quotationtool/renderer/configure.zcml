@@ -23,6 +23,12 @@
       />
 
   <utility
+      component=".html.htmlSourceFactory"
+      provides=".interfaces.ISourceFactory"
+      name="html"
+      />
+
+  <utility
       component=".vocabulary.SourceVocabulary"
       provides="zope.schema.interfaces.IVocabularyFactory"
       name="quotationtool.renderer.SourceTypes"

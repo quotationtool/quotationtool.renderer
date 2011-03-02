@@ -93,8 +93,9 @@ class SourceTypesTests(PlacelessSetup, unittest.TestCase):
             )
         self.assertTrue(field.validate('plaintext') is None)
         self.assertTrue(field.validate('rest') is None)
+        self.assertTrue(field.validate('html') is None)
         from zope.schema._bootstrapinterfaces import ConstraintNotSatisfied
-        #self.assertRaises(ConstraintNotSatisfied, field.validate('plaintextt'))
+        self.assertRaises(ConstraintNotSatisfied, field.validate, ('plaintextt'))
 
 
 def test_suite():
