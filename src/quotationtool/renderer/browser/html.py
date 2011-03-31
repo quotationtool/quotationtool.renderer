@@ -41,6 +41,6 @@ class HTMLSourceHTMLRenderer(object):
             return self.context
         doc = u"<div>" + self.context + u"</div>"
         try:
-            return truncate(doc.encode('utf-8'), limit, u"...")
+            return truncate(doc, limit, u"...")
         except Exception, err:
             return self.context
