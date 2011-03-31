@@ -4,7 +4,7 @@ from xml.sax import parseString
 from zope.publisher.interfaces.browser import IBrowserRequest
 
 from quotationtool.renderer import interfaces
-from quotationtool.renderer.browser.limit import LimitHandler
+from quotationtool.renderer.browser.truncate import truncate
 
 
 class HTMLSourceHTMLRenderer(object):
@@ -17,15 +17,15 @@ class HTMLSourceHTMLRenderer(object):
         u'<h1>Header</h1><p><em>First</em> paragraph with <br/>newline.</p>'
 
         >>> renderer.render(limit = 10)
-        u'<div><h1>Header</h1><p><em>Firs...</em></p></div>'
+        u'<div><h1>Header</h1><p><em>Firs</em></p></div>...'
 
         >>> renderer.render(limit = 31)
-        u'<div><h1>Header</h1><p><em>First</em> paragraph with <br></br>newl...</p></div>'
+        u'<div><h1>Header</h1><p><em>First</em> paragraph with <br/>newl</p></div>...'
 
         >>> source = u'''tag</so<up'''
         >>> renderer = HTMLSourceHTMLRenderer(source, object())
-        >>> renderer.render(limit = 3)
-        u'tag</so<up'
+        >>> renderer.render(limit = 6)
+        -2
 
     """
 
@@ -39,12 +39,8 @@ class HTMLSourceHTMLRenderer(object):
     def render(self, limit = None):
         if limit is None:
             return self.context
-        limit_handler = LimitHandler()
-        limit_handler.setLimit(limit)
         doc = u"<div>" + self.context + u"</div>"
         try:
-            parseString(doc.encode('utf-8'), limit_handler)
-            return limit_handler.getTruncatedDoc()
+            return truncate(doc.encode('utf-8'), limit, u"...")
         except Exception, err:
-            #raise Exception(err)
             return self.context
